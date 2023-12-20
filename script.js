@@ -18,9 +18,9 @@ function showTodo() {
     let i = 0;
     for (i = 0; i < todoArray.length; i++) {
         if (todoArray[i].done){
-            todoContent += `<div class="shadow m-2 p-2 mb-1 text-success">${todoArray[i].name} <button class="btn-success btn-sm float-right">Done</button></div>`
+            todoContent += `<div class="shadow m-2 p-2 mb-1 text-success">${todoArray[i].name} <button class="btn btn-success btn-sm float-end">Done</button></div>`
         } else {
-            todoContent += `<div class="shadow m-2 p-2 mb-1 text-danger">${todoArray[i].name} <button class="btn-danger btn-sm float-right" onclick="markAsDone(${i})">Mark as done</button></div>`
+            todoContent += `<div class="shadow m-2 p-2 mb-1 text-danger">${todoArray[i].name} <button class="btn btn-danger btn-sm float-end" onclick="markAsDone(${i})">Mark as done</button></div>`
         }
         
         document.getElementById('todoArea').innerHTML = todoContent
