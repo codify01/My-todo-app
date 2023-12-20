@@ -25,7 +25,6 @@ function showTodo() {
         
         document.getElementById('todoArea').innerHTML = todoContent
     }   
-
 }
 function remark(){
     // let pending = todoArray.filter(a => !a.done);
@@ -45,7 +44,7 @@ function remark(){
 }
 function clearTodo() {
     todoArray.length = 0;
-    showTodo()
+    // showTodo()
 }
 
 function markAsDone(index) {
