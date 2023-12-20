@@ -7,7 +7,8 @@ function addTodo() {
         todoinp.value = ""
         todoinp.focus()
         showTodo()
-        document.getElementById('remark').innerHTML = 'Your Have (' + todoArray.length + ') task(s) on your list'
+        remark()
+        markAsDone()
         console.log(todoArray);
     }
 }
@@ -17,19 +18,39 @@ function showTodo() {
     let i = 0;
     for (i = 0; i < todoArray.length; i++) {
         if (todoArray[i].done){
-            todoContent += `<div class="shadow m-2 p-2 mb-1 text-success">${todoArray[i].name}</div>`
+            todoContent += `<div class="shadow m-2 p-2 mb-1 text-success">${todoArray[i].name} <button class="btn-success btn-sm float-right">Done</button></div>`
         } else {
-            todoContent += `<div class="shadow m-2 p-2 mb-1 text-danger">${todoArray[i].name} <button class="btn-danger btn-sm float-right" onclick="markAsDone">Mark as done</button></div>`
+            todoContent += `<div class="shadow m-2 p-2 mb-1 text-danger">${todoArray[i].name} <button class="btn-danger btn-sm float-right" onclick="markAsDone(${i})">Mark as done</button></div>`
         }
-           
+        
         document.getElementById('todoArea').innerHTML = todoContent
     }   
+
+}
+function remark(){
+    // let pending = todoArray.filter(a => !a.done);
+    let pending = 0;
+    let i;
+    for (i = 0; i < todoArray.length; i++ ){
+        if(!todoArray[i].done){
+            pending += 1
+        }
+    }
+    if (pending != 0) {
+            document.getElementById('remark').innerHTML = 'Your Have (' + pending + ') task(s) on your list'
+        } else {
+        document.getElementById('remark').innerHTML = "You don't have any task on your list"
+    }
+
 }
 function clearTodo() {
     todoArray.length = 0;
     showTodo()
 }
 
-function markAsDone() {
-    
+function markAsDone(index) {
+    todoArray[index].done = true;
+    // console.log(todoArray[index]);
+    showTodo()
+    remark()
 }
